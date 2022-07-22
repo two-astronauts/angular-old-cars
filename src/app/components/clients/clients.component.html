@@ -1,0 +1,25 @@
+<tui-island>
+    <h3 class="tui-island__title">Clientes</h3>
+    <p class="tui-island__paragraph">
+        Recuerda que puedes gestionar los clientes desde esta pantalla.
+    </p>
+
+    <br>
+
+    <table tuiTable class="table" [columns]="columns">
+        <thead>
+            <tr tuiThGroup>
+                <th tuiTh [resizable]="true">
+                    Id
+                </th>
+                <th tuiTh>Nombre</th>
+                <th tuiTh>Apellido</th>
+                <th tuiTh>Direccion</th>
+                <th tuiTh>Telefono</th>
+            </tr>
+        </thead>
+        <tbody tuiTbody [data]="clients">
+            <tr *tuiRow="let item of clients" tuiTr></tr>
+        </tbody>
+    </table>
+</tui-island>

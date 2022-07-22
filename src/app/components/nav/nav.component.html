@@ -1,0 +1,10 @@
+<nav class="nav-bar">
+    <div class="nav-logo">
+        <img class="logo" src="./../assets/img/car-logo.png" alt="Autos antiguos">
+    </div>
+    <div class="menu">
+        <a *ngFor="let option of menu" [routerLink]="option.path" tuiButton type="button" appearance="flat" [size]="'m'">
+            {{ option.name }}
+        </a>
+    </div>
+</nav>

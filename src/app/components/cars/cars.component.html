@@ -1,0 +1,26 @@
+<tui-island>
+    <h3 class="tui-island__title">Carros</h3>
+    <p class="tui-island__paragraph">
+        Recuerda que puedes gestionar los carros desde esta pantalla.
+    </p>
+
+    <br>
+
+    <table tuiTable class="table" [columns]="columns">
+        <thead>
+            <tr tuiThGroup>
+                <th tuiTh [resizable]="true">
+                    Id
+                </th>
+                <th tuiTh>Placa</th>
+                <th tuiTh>Marca</th>
+                <th tuiTh>Modelo</th>
+                <th tuiTh>Color</th>
+                <th tuiTh>Valor</th>
+            </tr>
+        </thead>
+        <tbody tuiTbody [data]="cars">
+            <tr *tuiRow="let item of cars" tuiTr></tr>
+        </tbody>
+    </table>
+</tui-island>

@@ -1,0 +1,35 @@
+<tui-island>
+    <h3 class="tui-island__title">Ventas</h3>
+    <p class="tui-island__paragraph">
+        Recuerda que puedes gestionar las ventas desde esta pantalla.
+    </p>
+
+    <br>
+
+    <table tuiTable class="table" [columns]="columns">
+        <thead>
+            <tr tuiThGroup>
+                <th tuiTh [resizable]="true">
+                    Id
+                </th>
+                <th tuiTh>Fecha</th>
+                <th tuiTh>Valor</th>
+                <th tuiTh>Cliente</th>
+                <th tuiTh>Carro</th>
+            </tr>
+        </thead>
+        <tbody tuiTbody [data]="sales">
+            <tr *tuiRow="let item of sales" tuiTr>
+                <td *tuiCell="'valor'" tuiTd>
+                    {{ item.valor | currency: 'COP' }}
+                </td>
+                <td *tuiCell="'cliente'" tuiTd>
+                    {{ item.cliente.nombre + ' ' + item.cliente.apellido }}
+                </td>
+                <td *tuiCell="'carro'" tuiTd>
+                    {{ item.carro.placa }}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</tui-island>

@@ -1,0 +1,118 @@
+<tui-island>
+    <h3 class="tui-island__title">Eventos</h3>
+    <p class="tui-island__paragraph">
+        Recuerda que puedes gestionar los eventos desde esta pantalla.
+    </p>
+
+    <br>
+
+    <div class="tui-row tui-row_adaptive">
+        <div *ngIf="mode !== 'view'" class="tui-col_md-12">
+            <form class="tui-row tui-row_adaptive tui-col_md-12 b-form" [formGroup]="eventForm">
+                <p class="tui-col_md-4">
+                    <tui-input class="app-input" formControlName="id">
+                        ID
+                        <input tuiTextfield type="text" />
+                    </tui-input>
+                </p>
+                <p class="tui-col_md-4">
+                    <tui-input class="app-input" formControlName="nombre">
+                        Nombre
+                        <input tuiTextfield type="text" />
+                    </tui-input>
+                </p>
+                <p class="tui-col_md-4">
+                    <tui-select formControlName="carro" [valueContent]="carContent">
+                        Carro
+                        <tui-data-list-wrapper *tuiDataList [items]="cars" [itemContent]="carContent"></tui-data-list-wrapper>
+                        <!-- <ng-template #loading>
+                            <tui-loader class="tui-space_vertical-3 loader"></tui-loader>
+                        </ng-template> -->
+                    </tui-select>
+                </p>
+                <p class="tui-col_md-12">
+                    <button tuiButton type="button" [showLoader]="false" (click)="saveUpdate()" [disabled]="!eventForm.valid" [size]="'s'">
+                        Guardar
+                    </button>
+                    <button tuiButton type="button" [appearance]="'icon'" [showLoader]="false" (click)="cancel()" [disabled]="false" [size]="'s'">
+                        Cancelar
+                    </button>
+                </p>
+            </form>
+        </div>
+
+        <div *ngIf="mode === 'view'" class="tui-col_md-12">
+            <button tuiButton type="button" [showLoader]="false" (click)="add()" [disabled]="false" [size]="'s'">
+                Agregar
+            </button>
+        </div>
+
+        <div class="tui-col_xs-12 tui-col_md-7 tui-col_lg-7">
+            <h4>MongoDB</h4>
+            <table tuiTable class="table" [columns]="columnsMongo">
+                <thead>
+                    <tr tuiThGroup>
+                        <th tuiTh [resizable]="true">
+                            Id
+                        </th>
+                        <th tuiTh>Nombre</th>
+                        <th tuiTh>Carro</th>
+                        <th tuiTh>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody tuiTbody [data]="eventsMongo">
+                    <tr *tuiRow="let item of eventsMongo" tuiTr>
+                        <td *tuiCell="'carro'" tuiTd>
+                            {{ item.carro.placa }}
+                        </td>
+                        <td *tuiCell="'actions'" tuiTd>
+                            <button
+                                tuiIconButton
+                                type="button"
+                                class="tui-space_right-2"
+                                appearance="icon"
+                                icon="tuiIconEditLarge"
+                                (click)="edit(item)"
+                                size="xs">
+                            </button>
+                            <button
+                                tuiIconButton
+                                type="button"
+                                appearance="icon"
+                                icon="tuiIconTrashLarge"
+                                (click)="delete(item)"
+                                size="xs">
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tui-col_xs-12 tui-col_md-5 tui-col_lg-5">
+            <h4>PostgreSQL</h4>
+            <table tuiTable class="table" [columns]="columns">
+                <thead>
+                    <tr tuiThGroup>
+                        <th tuiTh [resizable]="true">
+                            Id
+                        </th>
+                        <th tuiTh>Nombre</th>
+                        <th tuiTh>Carro</th>
+                    </tr>
+                </thead>
+                <tbody tuiTbody [data]="events">
+                    <tr *tuiRow="let item of events" tuiTr>
+                        <td *tuiCell="'carro'" tuiTd>
+                            {{ item.carro.placa }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</tui-island>
+
+<ng-template tuiDataList #carContent let-item>
+    {{ item.placa }}
+</ng-template>

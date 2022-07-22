@@ -1,0 +1,22 @@
+<tui-island>
+    <h3 class="tui-island__title">Paises</h3>
+    <p class="tui-island__paragraph">
+        Recuerda que puedes gestionar los paises desde esta pantalla.
+    </p>
+
+    <br>
+
+    <table tuiTable class="table" [columns]="columns">
+        <thead>
+            <tr tuiThGroup>
+                <th tuiTh [resizable]="true">
+                    Id
+                </th>
+                <th tuiTh>Nombre</th>
+            </tr>
+        </thead>
+        <tbody tuiTbody [data]="countries">
+            <tr *tuiRow="let item of countries" tuiTr></tr>
+        </tbody>
+    </table>
+</tui-island>
